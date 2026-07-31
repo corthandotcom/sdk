@@ -1,0 +1,27 @@
+name: License Check
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  license-verify:
+    name: Verify Dependency Licenses
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
+      - name: Set up Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Install license checker
+        run: npm install -g license-checker
+
+      - name: Verify npm licenses
+        run: |
+          license-checker --summary --production --excludePrivatePackages --failOn "GPL,AGPL,LGPL,Copyleft"

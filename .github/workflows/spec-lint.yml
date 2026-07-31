@@ -1,0 +1,34 @@
+name: OpenAPI Spec Lint
+
+on:
+  push:
+    branches: [ main ]
+    paths:
+      - 'specs/**'
+      - '.github/workflows/spec-lint.yml'
+  pull_request:
+    branches: [ main ]
+    paths:
+      - 'specs/**'
+      - '.github/workflows/spec-lint.yml'
+
+jobs:
+  lint-spec:
+    name: Lint OpenAPI Spec
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
+      - name: Set up Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Install Spectral
+        run: npm install -g @stoplight/spectral-cli
+
+      - name: Lint Spec File
+        run: |
+          # If we don't have a spec rulebook yet, use the minimal builtin ruleset
+          spectral lint specs/openapi/v1.json --fail-on-unmatched-globs
