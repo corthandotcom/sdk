@@ -1,3 +1,2 @@
-export function useCorthanVersion(): string {
-  return "1.0.0-react";
-}
+export { CorthanProvider, CorthanProviderProps, useCorthanClient } from "./context.js";
+export * from "./hooks.js";

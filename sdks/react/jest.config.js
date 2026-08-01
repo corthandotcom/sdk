@@ -1,5 +1,8 @@
 module.exports = {
   preset: "ts-jest",
-  testEnvironment: "node",
-  testMatch: ["**/tests/**/*.test.ts"],
+  testEnvironment: "jsdom",
+  testMatch: ["**/tests/**/*.test.(ts|tsx)"],
+  moduleNameMapper: {
+    "^(\\.\\.?\\/.+)\\.js$": "$1"
+  }
 };
