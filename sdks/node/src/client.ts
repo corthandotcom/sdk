@@ -1,15 +1,15 @@
-import { TransportClient } from "./transport";
-import { Logger, NoOpLogger } from "./logger";
+import { TransportClient } from "./transport.js";
+import { Logger, NoOpLogger } from "./logger.js";
 
 // Services
-import { AuthService } from "./services/auth";
-import { IdentityService } from "./services/identity";
-import { SessionService } from "./services/session";
-import { DeviceService } from "./services/device";
-import { OrganisationService } from "./services/organisation";
-import { DeveloperService } from "./services/developer";
-import { BillingService } from "./services/billing";
-import { AuditService } from "./services/audit";
+import { AuthService } from "./services/auth.js";
+import { IdentityService } from "./services/identity.js";
+import { SessionService } from "./services/session.js";
+import { DeviceService } from "./services/device.js";
+import { OrganisationService } from "./services/organisation.js";
+import { DeveloperService } from "./services/developer.js";
+import { BillingService } from "./services/billing.js";
+import { AuditService } from "./services/audit.js";
 
 /**
  * Customization parameters for the CorthanClient.

@@ -1,5 +1,5 @@
-import { TransportClient } from "../transport";
-import { DeveloperKeyCreateSuccess, DeveloperKeyListSuccess } from "../types";
+import { TransportClient } from "../transport.js";
+import { DeveloperKeyCreateSuccess, DeveloperKeyListSuccess } from "../types.js";
 
 /**
  * Service for managing developer access keys.

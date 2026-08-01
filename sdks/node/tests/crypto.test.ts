@@ -1,5 +1,5 @@
 import * as crypto from "crypto";
-import { generateAssertion } from "../src/crypto";
+import { generateAssertion } from "../src/crypto.js";
 
 describe("Crypto Assertion Signer", () => {
   it("should generate a valid ECDSA P-256 DER signature assertion", () => {

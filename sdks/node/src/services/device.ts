@@ -1,5 +1,5 @@
-import { TransportClient } from "../transport";
-import { DeviceCreate, DeviceListSuccess, DeviceRevokedSuccess, DeviceSuccess } from "../types";
+import { TransportClient } from "../transport.js";
+import { DeviceCreate, DeviceListSuccess, DeviceRevokedSuccess, DeviceSuccess } from "../types.js";
 
 /**
  * Service for registering and auditing client hardware devices.

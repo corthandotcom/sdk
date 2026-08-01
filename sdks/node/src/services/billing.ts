@@ -1,5 +1,5 @@
-import { TransportClient } from "../transport";
-import { BillingTierSuccess } from "../types";
+import { TransportClient } from "../transport.js";
+import { BillingTierSuccess } from "../types.js";
 
 /**
  * Service for querying billing tier limits and usage meters.

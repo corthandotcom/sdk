@@ -1,6 +1,6 @@
 import * as crypto from "crypto";
-import { CorthanClient } from "../src/client";
-import { generateAssertion } from "../src/crypto";
+import { CorthanClient } from "../src/client.js";
+import { generateAssertion } from "../src/crypto.js";
 
 describe("Corthan Node SDK Integration Tests", () => {
   let client: CorthanClient;

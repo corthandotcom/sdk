@@ -1,5 +1,5 @@
-import { TransportClient } from "../transport";
-import { Assertion, AuthTokenSuccess, QRSessionCreateSuccess, QRConfirmRequest, QRConfirmSuccess, QRPollSuccess } from "../types";
+import { TransportClient } from "../transport.js";
+import { Assertion, AuthTokenSuccess, QRSessionCreateSuccess, QRConfirmRequest, QRConfirmSuccess, QRPollSuccess } from "../types.js";
 
 /**
  * Service for managing Corthan authentication mechanisms.

@@ -1,5 +1,5 @@
 import * as crypto from "crypto";
-import { Assertion } from "./types";
+import { Assertion } from "./types.js";
 
 /**
  * Signs a device auth assertion using a PEM-encoded P-256 ECDSA private key.

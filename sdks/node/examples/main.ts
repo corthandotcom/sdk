@@ -1,5 +1,5 @@
 import * as crypto from "crypto";
-import { CorthanClient, StdLogger, generateAssertion } from "../src/index";
+import { CorthanClient, StdLogger, generateAssertion } from "../src/index.js";
 
 async function main() {
   console.log("--- Running Node.js SDK Smoke Example ---");

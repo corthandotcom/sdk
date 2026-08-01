@@ -1,5 +1,5 @@
-import { TransportClient } from "../transport";
-import { Identity, IdentitySuccess, IdentityUpdate } from "../types";
+import { TransportClient } from "../transport.js";
+import { Identity, IdentitySuccess, IdentityUpdate } from "../types.js";
 
 /**
  * Service for managing Identity user profiles.

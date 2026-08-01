@@ -1,6 +1,6 @@
-import { CorthanError, isRetryableStatus } from "./error";
-import { Logger } from "./logger";
-import { ErrorEnvelope } from "./types";
+import { CorthanError, isRetryableStatus } from "./error.js";
+import { Logger } from "./logger.js";
+import { ErrorEnvelope } from "./types.js";
 
 export interface TransportOptions {
   baseURL: string;

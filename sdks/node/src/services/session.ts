@@ -1,5 +1,5 @@
-import { TransportClient } from "../transport";
-import { SessionListSuccess, SessionRevokedSuccess } from "../types";
+import { TransportClient } from "../transport.js";
+import { SessionListSuccess, SessionRevokedSuccess } from "../types.js";
 
 /**
  * Service for managing active sessions.

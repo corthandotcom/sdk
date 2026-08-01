@@ -1,5 +1,5 @@
-import { TransportClient } from "../src/transport";
-import { Logger } from "../src/logger";
+import { TransportClient } from "../src/transport.js";
+import { Logger } from "../src/logger.js";
 
 describe("TransportClient Unit Tests", () => {
   let mockLogger: jest.Mocked<Logger>;

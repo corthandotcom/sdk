@@ -1,5 +1,5 @@
-import { TransportClient } from "../transport";
-import { AuditLogListSuccess, PermissionsSuccess, RiskAssessmentRequest, RiskAssessmentSuccess } from "../types";
+import { TransportClient } from "../transport.js";
+import { AuditLogListSuccess, PermissionsSuccess, RiskAssessmentRequest, RiskAssessmentSuccess } from "../types.js";
 
 /**
  * Service for querying audit log trails, evaluating device threat risks, and querying permissions.

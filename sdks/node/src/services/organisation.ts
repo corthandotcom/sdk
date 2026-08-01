@@ -1,5 +1,5 @@
-import { TransportClient } from "../transport";
-import { Organization, OrganizationListSuccess, OrganizationMemberListSuccess, OrganizationSuccess } from "../types";
+import { TransportClient } from "../transport.js";
+import { Organization, OrganizationListSuccess, OrganizationMemberListSuccess, OrganizationSuccess } from "../types.js";
 
 /**
  * Service for managing Organizations and multi-tenant domain mapping.
