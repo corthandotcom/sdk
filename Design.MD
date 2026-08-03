@@ -132,43 +132,43 @@ The Authentication module wraps every supported Corthan auth flow (credential ex
 
 ## 8. Identity Modules
 
-The Identity module wraps identity-record CRUD and identity-verification operations exposed by the API. It is deliberately kept separate from the Authentication module: Authentication answers "who is making this call and are they allowed to," while Identity answers "what do we know about this identity record." This separation avoids the common SDK anti-pattern of an "Auth god object" that also happens to manage profile data.
+The Identity module wraps identity-profile registration, single retrieval, and profile updates exposed by the API (POST /identity, GET /identity/{id}, PUT /identity/{id}). It is deliberately kept separate from the Authentication module: Authentication answers "who is making this call and are they allowed to," while Identity answers "what do we know about this identity record." This separation avoids the common SDK anti-pattern of an "Auth god object" that also happens to manage profile data.
 
 ---
 
 ## 9. Session Modules
 
-The Session module wraps session lifecycle: creation, listing active sessions, revocation (single session and "revoke all others"), and session metadata (device, location-adjacent metadata as exposed by the API — never inferred client-side). Session revocation methods are designed to be safe-by-default (explicit confirmation parameter or explicit method name like `RevokeAll` rather than an easily-misused flag).
+The Session module wraps session retrieval and individual revocation (GET /sessions, DELETE /sessions/{id}). Since session creation is handled implicitly as a side effect of native device authentication (/auth) or QR session confirmation (/auth/qr/confirm), the Session module does not expose session creation endpoints. Session revocation methods are designed to be safe-by-default (requiring explicit session ID parameters to prevent unintended global logout loops).
 
 ---
 
 ## 10. Device Modules
 
-The Device module wraps device registration and device verification flows, including the primitives needed for the React Native SDK to support platform-level device attestation hooks. Device-module design explicitly anticipates that React Native will need additional native-bridge touchpoints (biometric prompt, secure enclave-backed key storage) that Go/Node/React do not — this is handled via an injectable `DeviceAttestationProvider` interface implemented natively only in the React Native SDK, keeping the shared conceptual model identical across SDKs while allowing platform-specific implementation.
+The Device module wraps device registration and deactivation (GET /devices, POST /devices, DELETE /devices/{id}), including the primitives needed for the React Native SDK to support platform-level device attestation hooks. Device verification is handled implicitly via the cryptographic verification of ECDSA signature assertions during the authentication flow (/auth).
 
 ---
 
 ## 11. Organisation Modules
 
-The Organisation module wraps multi-tenant organisation management (creation, membership, roles) as exposed by the API. Because this module often has the widest blast radius (org-level operations can affect many identities/sessions at once), every mutating method requires explicit, unambiguous parameters (no implicit "current organisation" magic state unless the consumer has explicitly set a default org context on the client).
+The Organisation module wraps multi-tenant organisation management (listing organizations, creation, and members list: GET /organizations, POST /organizations, GET /organizations/{id}/members). Because this module often has the widest blast radius, every mutating method requires explicit, unambiguous parameters (no implicit "current organisation" state).
 
 ---
 
 ## 12. Developer Modules
 
-The Developer module wraps developer-account and API-key management (for developers building on top of Corthan themselves — a "meta" surface). This module is the smallest surface in the SDKs aimed at end-user apps (Node/React/React Native primarily consume Identity/Session/Device/Auth; Developer-module usage is expected mostly from the Go SDK and backend Node usage, informing which examples get priority in `examples/`).
+The Developer module wraps developer API key management (GET /developers/keys, POST /developers/keys, DELETE /developers/keys/{id}). This module is the smallest surface in the SDKs aimed at end-user apps (Node/React/React Native primarily consume Identity/Session/Device/Auth).
 
 ---
 
 ## 13. Billing Modules
 
-The Billing module wraps subscription/usage/invoice read operations exposed by the API. Billing mutation operations (if any) are treated with the same "no ambiguous defaults" rule as Organisation modules. Billing data is treated as sensitive by default in the Logging Rules (Rules.MD §19) — no billing response body is ever logged at `debug` level without explicit redaction of monetary/account identifiers.
+The Billing module wraps usage/metering read operations (GET /billing/tier). In accordance with API specs, metering runs against internal database aggregates (no external payment providers). Billing data is treated as sensitive by default in the Logging Rules (Rules.MD §19) — no billing response body is ever logged at `debug` level without explicit redaction.
 
 ---
 
 ## 14. Audit Modules
 
-The Audit module wraps read access to audit-log records. This module is intentionally read-only in every SDK; there is no SDK-level method that could mutate or delete audit records, regardless of what the underlying API may or may not expose, reinforcing the platform's security posture at the client boundary.
+The Audit module wraps read access to audit-log records (GET /audit/logs). This module is intentionally read-only in every SDK; there is no SDK-level method that could mutate or delete audit records, reinforcing the platform's security posture at the client boundary.
 
 ---
 
