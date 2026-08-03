@@ -63,9 +63,8 @@ describe("React Native SDK Hook and Platform Resolution Tests", () => {
     client = new CorthanClient({}) as any;
   });
 
-  const wrapper = ({ children }: { children: React.ReactNode }) => (
-    <CorthanProvider client={client}>{children}</CorthanProvider>
-  );
+  const wrapper = ({ children }: { children: React.ReactNode }) =>
+    React.createElement(CorthanProvider, { client }, children);
 
   describe("Hooks State Verification", () => {
     it("should initialize with default states and execute successfully", async () => {

@@ -16,7 +16,7 @@ export interface CorthanProviderProps {
   config?: CorthanConfig;
   secureStorage?: SecureStorageAdapter;
   attestationProvider?: DeviceAttestationProvider;
-  children: React.ReactNode;
+  children?: React.ReactNode;
 }
 
 export const CorthanProvider: React.FC<CorthanProviderProps> = ({
