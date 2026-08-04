@@ -23,7 +23,7 @@ All unit, integration, and platform tests executed successfully:
   - Crypto assertions, network transport retries, and API client resource mappings.
 * **React SDK Hook State Tests**: `npm run test` (Passed, Code `0` in JSDOM)
   - Custom React context hooks transitions (loading, error, success states).
-* **React Native SDK Hook & Resolution Tests**: `npm run test` (Passed, Code `0` in JSDOM)
+* **React Native SDK Hook & Resolution Tests**: `npm run test` (Passed, Code `0` in pure Node environment using react-test-renderer)
   - Custom React Native context hooks state bounds and platform-specific storage module resolution.
 
 ---
@@ -34,7 +34,7 @@ All packages were checked against their live public URLs:
 * **Go Module**: Pinned to tag `sdks/go/v0.1.0` and resolves successfully.
 * **Node Package**: `@corthan/sdk` published and public. Clean-room installation verified from npm registry.
 * **React Package**: `@corthan/react` published and public. Clean-room installation verified from npm registry.
-* **React Native Package**: `@corthan/react-native` published and public. Clean-room installation and simulated Metro platform resolution (`smoke.js` loaded `.ios` and `.android` storage logging mappers correctly under different platforms) verified from npm registry.
+* **React Native Package**: `@corthan/react-native` published and public. Clean-room installation and platform resolution tests verified in a pure Node environment without browser/JSDOM emulation.
 
 ---
 

@@ -44,7 +44,6 @@ jest.mock("@corthan/sdk", () => {
         },
         audit: {
           listLogs: jest.fn(),
-          evaluateRisk: jest.fn(),
           getPermissions: jest.fn()
         }
       };

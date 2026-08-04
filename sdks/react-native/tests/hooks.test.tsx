@@ -1,6 +1,50 @@
 import * as React from "react";
-import { renderHook, act } from "@testing-library/react";
+import ReactTestRenderer from "react-test-renderer";
 import { CorthanProvider, useBilling } from "../src/index.js";
+
+const { act } = ReactTestRenderer;
+
+function renderHook<TProps, TResult>(
+  callback: (props: TProps) => TResult,
+  options?: { wrapper?: React.ComponentType<{ children: React.ReactNode }> }
+) {
+  const result = { current: null as any };
+  function TestComponent({ props }: { props: TProps }) {
+    result.current = callback(props);
+    return null;
+  }
+
+  let renderer: any;
+  const Wrapper = options?.wrapper;
+  
+  if (Wrapper) {
+    renderer = ReactTestRenderer.create(
+      React.createElement(Wrapper, null, React.createElement(TestComponent, { props: undefined as any }))
+    );
+  } else {
+    renderer = ReactTestRenderer.create(
+      React.createElement(TestComponent, { props: undefined as any })
+    );
+  }
+
+  return {
+    result,
+    rerender: (newProps: TProps) => {
+      if (Wrapper) {
+        renderer.update(
+          React.createElement(Wrapper, null, React.createElement(TestComponent, { props: newProps }))
+        );
+      } else {
+        renderer.update(
+          React.createElement(TestComponent, { props: newProps })
+        );
+      }
+    },
+    unmount: () => {
+      renderer.unmount();
+    }
+  };
+}
 import { CorthanClient } from "@corthan/sdk";
 import * as storageDefault from "../src/internal/storage.js";
 import * as storageIos from "../src/internal/storage.ios.js";
@@ -47,7 +91,6 @@ jest.mock("@corthan/sdk", () => {
         },
         audit: {
           listLogs: jest.fn(),
-          evaluateRisk: jest.fn(),
           getPermissions: jest.fn()
         }
       };

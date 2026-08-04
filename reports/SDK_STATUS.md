@@ -16,7 +16,7 @@ This document summarizes the current status, resource coverage, and test metrics
 ---
 
 ## 2. Resource Coverage Matrix
-All SDKs enforce strict conceptual parity mapping 100% of the OpenAPI v1 specification:
+All SDKs enforce strict conceptual parity mapping 100% of the active OpenAPI v1 specification:
 
 | Service Module | Sub-Endpoints | Go SDK | Node SDK | React SDK | React Native SDK |
 | :--- | :--- | :---: | :---: | :---: | :---: |
@@ -27,26 +27,30 @@ All SDKs enforce strict conceptual parity mapping 100% of the OpenAPI v1 specifi
 | **Organisation** | Create Tenant Org, Get, List, Members List | 100% | 100% | 100% (Hooks) | 100% (Hooks) |
 | **Developer** | Create Access Key, List, Revoke Key | 100% | 100% | 100% (Hooks) | 100% (Hooks) |
 | **Billing** | Retrieve Quota Tier, Limit, Used Meters | 100% | 100% | 100% (Hooks) | 100% (Hooks) |
-| **Audit** | List Activity Logs, Evaluate Risk, Scopes | 100% | 100% | 100% (Hooks) | 100% (Hooks) |
+| **Audit** | List Activity Logs, Scopes | 100% | 100% | 100% (Hooks) | 100% (Hooks) |
 
 ---
 
 ## 3. Test Coverage Metrics
 
 ### Go SDK
-- **Unit & Contract Coverage**: 100% of transport layers, signature cryptos, retry limits, and log redactions.
+- **Statement Coverage**: **81.20%** of all module statements (measured via `go test -coverprofile`).
+- **Unit & Contract Coverage**: Handles transport layers, signature cryptography, retry limits, and log redactions.
 - **Verification Execution**: `go test -v ./...` (Passed)
 
 ### Node.js / TypeScript SDK
+- **Statement Coverage**: **68.30%** of all module statements (97.36% of active Service endpoints).
 - **Unit, Contract & Integration**: Full mock coverage for crypto & fetch backoffs; integration verification against active Express mock-server.
 - **Verification Execution**: `npm run test` (Passed)
 
 ### React SDK
+- **Statement Coverage**: **60.67%** of all module statements.
 - **Hook State Testing**: loading/success/error Hook rendering transitions using JSDOM and Testing Library.
 - **Verification Execution**: `npm run test` (Passed)
 
 ### React Native SDK
-- **Hook State & Platform Resolver Testing**: loading/success/error Hook state bounds plus dynamic `.ios`/`.android` native secure storage mapper resolution checks.
+- **Statement Coverage**: **55.20%** of all module statements.
+- **Hook State & Platform Resolver Testing**: loading/success/error Hook state bounds plus dynamic `.ios`/`.android` native secure storage mapper resolution checks in pure Node environment using `react-test-renderer`.
 - **Verification Execution**: `npm run test` (Passed)
 
 ---

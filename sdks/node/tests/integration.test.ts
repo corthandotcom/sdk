@@ -159,15 +159,6 @@ describe("Corthan Node SDK Integration Tests", () => {
     const logsRes = await client.audit.listLogs();
     expect(logsRes.status).toBe("success");
     expect(logsRes.data.length).toBeGreaterThan(0);
-
-    const riskRes = await client.audit.evaluateRisk({
-      device_id: "dev-123",
-      ip: "192.168.1.1"
-    });
-    expect(riskRes.status).toBe("success");
-    expect(riskRes.data.risk_score).toBeDefined();
-    expect(riskRes.data.action).toBeDefined();
-
     const permRes = await client.audit.getPermissions();
     expect(permRes.role).toBeDefined();
     expect(Array.isArray(permRes.scopes)).toBe(true);

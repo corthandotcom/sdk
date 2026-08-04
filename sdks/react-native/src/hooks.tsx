@@ -24,9 +24,7 @@ import {
   DeveloperKeyListSuccess,
   BillingTierSuccess,
   AuditLogListSuccess,
-  PermissionsSuccess,
-  RiskAssessmentRequest,
-  RiskAssessmentSuccess
+  PermissionsSuccess
 } from "@corthan/sdk";
 
 export interface AsyncState<T> {
@@ -257,7 +255,7 @@ export function useBilling() {
 }
 
 /**
- * Hook for querying audit log trails, evaluating device threat risks, and querying permissions.
+ * Hook for querying audit log trails and querying permissions.
  */
 export function useAudit() {
   const client = useCorthanClient();
@@ -266,17 +264,12 @@ export function useAudit() {
     client.audit.listLogs.bind(client.audit)
   );
 
-  const evaluateRisk = useAsyncAction<[req: RiskAssessmentRequest], RiskAssessmentSuccess>(
-    client.audit.evaluateRisk.bind(client.audit)
-  );
-
   const getPermissions = useAsyncAction<[], PermissionsSuccess>(
     client.audit.getPermissions.bind(client.audit)
   );
 
   return {
     listLogs,
-    evaluateRisk,
     getPermissions
   };
 }

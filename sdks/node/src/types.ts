@@ -183,21 +183,6 @@ export interface OrganizationMemberListSuccess {
   data: OrganizationMember[];
   meta: Meta;
 }
-
-export interface RiskAssessmentRequest {
-  device_id: string;
-  ip?: string;
-}
-
-export interface RiskAssessmentSuccess {
-  status: string;
-  data: {
-    risk_score: number;
-    action: string; // allow, flag, deny
-  };
-  meta: Meta;
-}
-
 export interface BillingTier {
   tier: string;
   limit: number;

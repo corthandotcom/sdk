@@ -211,22 +211,6 @@ type OrganizationMemberListSuccess struct {
 	Meta   Meta                 `json:"meta"`
 }
 
-// RiskAssessmentRequest defines input variables for evaluation.
-type RiskAssessmentRequest struct {
-	DeviceID string `json:"device_id"`
-	IP       string `json:"ip,omitempty"`
-}
-
-// RiskAssessmentSuccess represents risk output score and recommended mitigation.
-type RiskAssessmentSuccess struct {
-	Status string `json:"status"`
-	Data   struct {
-		RiskScore float64 `json:"risk_score"`
-		Action    string  `json:"action"` // allow, flag, deny
-	} `json:"data"`
-	Meta Meta `json:"meta"`
-}
-
 // BillingTier represents Auroras billing tier configurations.
 type BillingTier struct {
 	Tier       string  `json:"tier"`

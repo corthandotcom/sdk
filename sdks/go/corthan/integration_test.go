@@ -223,14 +223,4 @@ func TestIntegrationMockServer(t *testing.T) {
 	if len(permissions.Scopes) == 0 {
 		t.Error("expected scopes list, got empty")
 	}
-
-	riskRes, err := client.Audit.EvaluateRisk(ctx, &corthan.RiskAssessmentRequest{
-		DeviceID: "dev-1234",
-	})
-	if err != nil {
-		t.Fatalf("Audit.EvaluateRisk failed: %v", err)
-	}
-	if riskRes.Data.Action != "allow" {
-		t.Errorf("expected allow, got %s", riskRes.Data.Action)
-	}
 }

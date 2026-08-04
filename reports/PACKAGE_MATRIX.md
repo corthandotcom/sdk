@@ -1,6 +1,6 @@
 # Package Matrix
 
-This document defines the cross-SDK compatibility matrix matching API spec coordinates, language runtime targets, and release milestones per Design.MD Section 27.
+This document defines the cross-SDK compatibility matrix matching API spec coordinates, language runtime targets, and release milestones per Design.MD Section 1.
 
 ---
 
@@ -17,4 +17,4 @@ This document defines the cross-SDK compatibility matrix matching API spec coord
 
 ## Spec Stability Rules
 1. **Backward Compatibility**: Any minor bump (`0.x.y`) in the SDKs must preserve strict compatibility with the pinned OpenAPI `v1.0.0` spec.
-2. **Ecosystem Sync**: Substantial architectural enhancements across transport layers or security extensions should be bumped synchronously across Go, Node, React, and React Native SDK targets to maintain model alignment parity.
+2. **Independent Versioning**: In accordance with Rules.MD §6.5, each SDK versions independently. There is no requirement that all four SDKs share the same version number at any given time; parity is tracked via this matrix, not via synchronized version numbers.

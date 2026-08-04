@@ -18,11 +18,14 @@
   "devDependencies": {
     "@commitlint/cli": "^19.3.0",
     "@commitlint/config-conventional": "^19.2.2",
+    "@testing-library/dom": "^10.4.1",
+    "@types/react-test-renderer": "^19.1.0",
     "@typescript-eslint/eslint-plugin": "^8.65.0",
     "@typescript-eslint/parser": "^8.65.0",
     "eslint": "^9.8.0",
     "husky": "^9.1.4",
     "prettier": "^3.3.3",
+    "react-test-renderer": "^19.2.8",
     "turbo": "^2.0.11",
     "typescript": "^5.5.4"
   },

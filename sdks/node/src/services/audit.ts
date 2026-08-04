@@ -1,8 +1,8 @@
 import { TransportClient } from "../transport.js";
-import { AuditLogListSuccess, PermissionsSuccess, RiskAssessmentRequest, RiskAssessmentSuccess } from "../types.js";
+import { AuditLogListSuccess, PermissionsSuccess } from "../types.js";
 
 /**
- * Service for querying audit log trails, evaluating device threat risks, and querying permissions.
+ * Service for querying audit log trails and querying permissions.
  */
 export class AuditService {
   constructor(private transport: TransportClient) {}
@@ -12,13 +12,6 @@ export class AuditService {
    */
   public async listLogs(): Promise<AuditLogListSuccess> {
     return this.transport.request<AuditLogListSuccess>("GET", "/audit/logs");
-  }
-
-  /**
-   * Submits a real-time risk assessment threat check payload.
-   */
-  public async evaluateRisk(req: RiskAssessmentRequest): Promise<RiskAssessmentSuccess> {
-    return this.transport.request<RiskAssessmentSuccess>("POST", "/risk/evaluate", req);
   }
 
   /**

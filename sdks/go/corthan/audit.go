@@ -5,7 +5,7 @@ import (
 	"net/http"
 )
 
-// AuditService wraps Audit logs, risk evaluation, and permissions query.
+// AuditService wraps Audit logs and permissions query.
 type AuditService struct {
 	t *TransportClient
 }
@@ -24,16 +24,6 @@ func (s *AuditService) GetAuditLogs(ctx context.Context) (*AuditLogListSuccess, 
 func (s *AuditService) GetPermissions(ctx context.Context) (*PermissionsSuccess, error) {
 	var result PermissionsSuccess
 	err := s.t.Request(ctx, http.MethodGet, "/permissions", nil, &result)
-	if err != nil {
-		return nil, err
-	}
-	return &result, nil
-}
-
-// EvaluateRisk performs evaluation of authentication threat signals.
-func (s *AuditService) EvaluateRisk(ctx context.Context, riskReq *RiskAssessmentRequest) (*RiskAssessmentSuccess, error) {
-	var result RiskAssessmentSuccess
-	err := s.t.Request(ctx, http.MethodPost, "/risk/evaluate", riskReq, &result)
 	if err != nil {
 		return nil, err
 	}
